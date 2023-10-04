@@ -4,14 +4,19 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: [true, "please provide a username"], unique: true },
     email: { type: String, required: [true, "please provide email"], unique: true },
     password: { type: String, required: [true, "please provide password"], },
-    isVerified: { type: Boolean, default: false },
-    isAdmin: { type: Boolean, default: false },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
     forgotPasswordToken: String,
     forgotPasswordTokenExpiry: Date,
-    verifyToken : String,
+    verifyToken: String,
     verifyTokenExpiry: Date,
 
-    //120
 })
 
 const user = mongoose.models.users || mongoose.model("users", userSchema);

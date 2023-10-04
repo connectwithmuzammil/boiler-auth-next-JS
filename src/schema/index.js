@@ -12,7 +12,7 @@ export const loginFormValidate = Yup.object({
 
 // Register form Validation
 export const regsiterFormValidate = Yup.object({
-    name: textField,
+    username: textField,
     email,
     password,
     // confirmPassword: confirmPassword({

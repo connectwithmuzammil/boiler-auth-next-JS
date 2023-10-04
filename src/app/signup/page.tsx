@@ -76,7 +76,7 @@ const SignUp = () => {
 
       <Formik
         initialValues={{
-          name: "",
+          username: "",
           email: "",
           password: "",
         }}
@@ -109,7 +109,7 @@ const SignUp = () => {
               />
               <MyTextField
                 placeholder="name"
-                name="name"
+                name="username"
               />
             </div>
             <div className="sub-input flex justify-center 
