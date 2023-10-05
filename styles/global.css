@@ -42,7 +42,7 @@ input:focus {
 }
 .error {
   /* width: inherit; */
-  color: #C73E1D;
+  color: red;
   font-size: 0.9em;
   text-align: left;
   /* padding-right: 2px; */

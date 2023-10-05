@@ -1,9 +1,25 @@
 "use client";
 import { Formik, Form } from "formik";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from 'react-toastify';
 import { MyTextField } from "@/helper/TextInput.js";
 import { resetPasswordFormValidate } from "@/schema/index";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 const page = () => {
+  const router = useRouter();
+  const [token, setToken] = useState("");
+  // const [verified, setVerified] = useState(false);
+  // const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const urlToken = window.location.search.split("=")[1];
+    setToken(urlToken || "");
+  }, []);
+
+
   return (
     <div className="form">
       <h1 className=" text-4xl text-center font-bold mb-2">Reset Password </h1>
@@ -14,10 +30,15 @@ const page = () => {
       <Formik
         initialValues={{ password: "" }}
         validationSchema={resetPasswordFormValidate}
-        onSubmit={async (data) => {
+        onSubmit={async (data: any) => {
           try {
-            await axios.post("/api/users/", data);
             console.log("data", data);
+            // const requestData = { data, token };
+            await axios.post("/api/users/resetpassword", { token, data });
+            toast.success("Password Changed successfully!", {
+              position: "top-right",
+            })
+            router.push("/login");
           } catch (error) {
             console.log("error", error);
           }
@@ -26,6 +47,21 @@ const page = () => {
         {(formik) => (
           <Form>
             <>
+              {/* <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` : "no token"}</h2>
+              {verified && (
+                <div>
+                  <h2 className="text-2xl">password changed</h2>
+                  <Link href="/login">
+                    Login
+                  </Link>
+                </div>
+              )}
+              {error && (
+                <div>
+                  <h2 className="text-2xl bg-red-500 text-black">Error</h2>
+
+                </div>
+              )} */}
               <MyTextField
                 placeholder="********"
                 name="password"
@@ -46,6 +82,7 @@ const page = () => {
           </Form>
         )}
       </Formik>
+
     </div>
   );
 };

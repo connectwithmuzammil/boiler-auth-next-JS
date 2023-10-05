@@ -14,18 +14,12 @@ export async function POST(request: NextRequest) {
         if (!user) {
             return NextResponse.json({ error: "User does not exist" }, { status: 400 })
         }
-        // const user = await User.findOne({
-        //     forgotPasswordToken: token,
-        //     forgotPasswordTokenExpiry: { $gt: Date.now() },
-        // });
-        // if (!user) {
-        //     return NextResponse.json({ error: "Invalid or expired token or user not exits" }, { status: 400 });
-        // }
         console.log(user);
+
         //Send Forgot Verification Email
         await sendEmail({ email, emailType: "RESET", userId: user._id })
         return NextResponse.json({
-            message: "email forgot",
+            message: "Send E-mail Forgot Link To Mail",
             success: true,
         })
     } catch (error: any) {

@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import axios from "axios";
 import { MyTextField } from "@/helper/TextInput.js";
 import { forgotPasswordFormValidate } from "@/schema/index";
+import { toast } from "react-toastify";
 const page = () => {
   return (
     <div className="form">
@@ -18,8 +19,14 @@ const page = () => {
           try {
             await axios.post("/api/users/forgotpassword", data);
             console.log("data", data);
+            toast.success("Please check your email", {
+              position: "top-right",
+            });
           } catch (error) {
             console.log("error", error);
+            toast.error("user not exists in our system", {
+              position: "top-right",
+            });
           }
         }}
       >
