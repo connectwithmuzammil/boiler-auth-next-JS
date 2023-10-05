@@ -20,3 +20,13 @@ export const regsiterFormValidate = Yup.object({
     //     pass: "password",
     // }),
 });
+
+//Forgot Password form Validation
+export const forgotPasswordFormValidate = Yup.object({
+    email,
+});
+
+//Reset Password form Validation
+export const resetPasswordFormValidate = Yup.object({
+    password,
+});

@@ -35,8 +35,8 @@ const SignUp = () => {
   return (
     <div className="main 
     flex justify-center 
-    items-center flex-col 
-  bg-black mx-auto 
+   items-center flex-col 
+    bg-black
   "
     >
       <h1 className="text-white text-2xl">Create Account </h1>
@@ -72,7 +72,7 @@ const SignUp = () => {
           height={30}
         />
       </div>
-      <p className="text-white text-lg">or</p>
+      <p className="text-white text-lg mb-2">or</p>
 
       <Formik
         initialValues={{
@@ -94,61 +94,33 @@ const SignUp = () => {
         }}
       >
         {(formik) => (
-
-
-          <Form className="flex justify-center 
-                    items-center flex-col">
-
-            <div className="sub-input flex justify-center items-center gap-8">
-              <Image
-                className="my-3  bg-white rounded-full cursor-pointer "
-                src="/assets/icons/user.svg"
-                alt="Sign UP"
-                width={32}
-                height={32}
-              />
-              <MyTextField
-                placeholder="name"
-                name="username"
-              />
+          <Form className='w-80'>
+            <MyTextField
+              placeholder="name"
+              name="username"
+              type="text"
+            />
+            <MyTextField
+              placeholder="email"
+              name="email"
+              type="email"
+            />
+            <MyTextField
+              placeholder="********"
+              name="password"
+              type="password"
+            />
+            <div className="flex flex-col items-center">
+              <button
+                className="bg-blue-500 hover:bg-blue-700
+                 text-white font-bold py-1.5 
+                   mb-2 rounded min-w-full"
+                // onClick={signUp}
+                type='submit'
+              >
+                Signup
+              </button>
             </div>
-            <div className="sub-input flex justify-center 
-    items-center gap-8">
-              <Image
-                className="my-3   bg-white cursor-pointer"
-                src="/assets/icons/email.svg"
-                alt="Sign UP"
-                width={32}
-                height={32}
-              />
-              <MyTextField
-                placeholder="email"
-                name="email"
-              />
-            </div>
-            <div className="sub-input flex justify-center 
-    items-center gap-8">
-              <Image
-                className="my-3 bg-white rounded-full cursor-pointer"
-                src="/assets/icons/password.svg"
-                alt="Sign UP"
-                width={32}
-                height={32}
-              />
-              <MyTextField
-                placeholder="password"
-                name="password"
-              />
-            </div>
-            <button
-              className="bg-blue-500 hover:bg-blue-700
-       text-white font-bold py-1.5 
-       px-8 my-6 rounded"
-              // onClick={signUp}
-              type='submit'
-            >
-              Signup
-            </button>
           </Form>
         )}
       </Formik>

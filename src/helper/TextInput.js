@@ -22,6 +22,16 @@ export const MyTextField = ({ placeholder, ...props }) => {
         </div>
     );
 };
+export const MyTextForgot = ({ placeholder, ...props }) => {
+    const [field, meta, helpers] = useField(props);
+    return (
+        <div >
+            <input  className placeholder={placeholder} {...field}/>
+            {meta.touched && meta.error && <div className='error'>{meta.error}</div>}
+        </div>
+    );
+};
+
 
 export const FieldPassword = ({ label, placeholder, value, onChange, ...props }) => {
     const { field, meta } = Field(props);

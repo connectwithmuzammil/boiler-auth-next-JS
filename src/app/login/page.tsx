@@ -101,51 +101,52 @@ const Login = () => {
                 {(formik) => (
 
 
-                    <Form className="flex justify-center 
-                    items-center flex-col">
-                        <div className=" flex gap-4 mb-4" >
-                            <Image
+                    <Form className="w-80">
+                        {/* <div className=" flex gap-4 mb-4" > */}
+                        {/* <Image
                                 className="my-3   bg-white cursor-pointer"
                                 src="/assets/icons/email.svg"
                                 alt="Sign UP"
                                 width={32}
                                 height={32}
-                            />
+                            /> */}
 
-                            <MyTextField
-                                name="email"
-                                type="email"
-                                placeholder="email"
-                            />
-                        </div>
-                        <div className=" flex gap-4 mb-4" >
+                        <MyTextField
+                            name="email"
+                            type="email"
+                            placeholder="email"
+                        />
+                        {/* </div> */}
+                        {/* <div className=" flex gap-4 mb-4" >
                             <Image
                                 className="my-3 bg-white rounded-full cursor-pointer"
                                 src="/assets/icons/password.svg"
                                 alt="Sign UP"
                                 width={32}
                                 height={32}
-                            />
-                            <MyTextField
-                                name="password"
-                                type="password"
-                                placeholder="********"
-                            />
-                        </div>
-                        <div style={{ marginLeft: '8rem' }}>
-                            <p className="text-white">Forgot password?</p>
+                            /> */}
+                        <MyTextField
+                            name="password"
+                            type="password"
+                            placeholder="********"
+                        />
+
+                        {/* </div> */}
+                        <div className="flex justify-end my-3">
+                            <Link href="/forgotpassword" className="text-white ">Forgot password?</Link>
                         </div>
                         {/* </div> */}
-
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700
+                        <div className="flex flex-col items-center">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700
                           text-white font-bold py-1.5 
-                            px-8 my-6 rounded"
-                            // onClick={login}
-                            type="submit"
-                        >
-                            Login
-                        </button>
+                             mb-2 rounded min-w-full"
+                                // onClick={login}
+                                type="submit"
+                            >
+                                Login
+                            </button>
+                        </div>
                     </Form>
                 )}
             </Formik>
