@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
         // check if user already exists
         const user = await User.findOne({ email });
         if (user) {
-            return NextResponse.json({ status: 400, body: { message: "User already exists" } })
+            return NextResponse.json({ status: 400, body: { message: "user already exist" } })
         }
 
         // hash password
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         console.log("saveUser", saveUser);
 
         //Send Verification Email
-        await sendEmail({ email, emailType: "VERIFY", userId: saveUser._id })
+        // await sendEmail({ email, emailType: "VERIFY", userId: saveUser._id })
 
         return NextResponse.json({
             message: "User created successfully",

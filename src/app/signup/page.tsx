@@ -7,31 +7,14 @@ import { Formik, Form } from "formik";
 import { MyTextField } from '@/helper/TextInput'
 import Link from "next/link"
 import { regsiterFormValidate } from "@/schema/index"
+import { toast } from "react-toastify";
 
 
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
-  // const [user, setuser] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: ""
-  // });
-
-  // const signUp = async () => {
-  //   console.log("CLICK ON SIGNUP");
-
-  //   try {
-  //     const response = await axios.post("/api/users/signup", user);
-  //     console.log("sign up success", response);
-  //     router.push("/login");
-  //   } catch (error: any) {
-  //     console.log(error, error);
-  //   }
-
-  // }
-
-
   return (
     <div className="main 
     flex justify-center 
@@ -81,14 +64,33 @@ const SignUp = () => {
           password: "",
         }}
         validationSchema={regsiterFormValidate}
-        onSubmit={async (data) => {
-          console.log("DATA:", data);
+        onSubmit={async (data, { resetForm }) => {
+          setLoading(true);
           try {
             const response = await axios.post("/api/users/signup", data);
             console.log("sign up success", response);
-            router.push("/login");
+            if (response?.data?.body?.message === "user already exist") {
+              toast.error('User already exists. Please log in.', {
+                position: 'top-right'
+              });
+            } 
+            else {
+              toast.success('Account created successfully!', {
+                position: 'top-right'
+              });
+              router.push('/login');
+            }
+            // toast.error(response.data.body.message, {
+            //   position: "top-right"
+            // });
+            // router.push("/login");
+            // resetForm();
           } catch (error: any) {
             console.log(error, error);
+
+          } finally {
+            setLoading(false);
+            resetForm();
           }
 
         }}
@@ -112,13 +114,14 @@ const SignUp = () => {
             />
             <div className="flex flex-col items-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700
+                className={`bg-blue-500 hover:bg-blue-700
                  text-white font-bold py-1.5 
-                   mb-2 rounded min-w-full"
-                // onClick={signUp}
+                   mb-2 rounded min-w-full ${loading ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                disabled={loading}
                 type='submit'
               >
-                Signup
+                {loading ? "Loading..." : "Sign Up"}
               </button>
             </div>
           </Form>
